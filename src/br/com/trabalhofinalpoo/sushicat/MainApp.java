@@ -71,6 +71,25 @@ public class MainApp extends JFrame {
         telaJogo.repaint();
     }
 
+    private boolean verificarGameOver() {
+        if (jogo.getDinheiro() < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Você faliu! Seu saldo ficou negativo e o restaurante fechou.",
+                    "Game Over",
+                    JOptionPane.ERROR_MESSAGE);
+
+            this.jogo = new Jogo();
+            br.com.trabalhofinalpoo.sushicat.backend.Receita.inicializarReceitasPadrao();
+
+            setContentPane(telaInicial);
+            revalidate();
+            repaint();
+            atualizarStatusUI();
+            return true;
+        }
+        return false;
+    }
+
     private void preencherTelaResumo() {
         Financeiro financeiro = jogo.getFinanceiro();
         int diaQueAcabou = jogo.getDiaAtual();
@@ -517,9 +536,13 @@ public class MainApp extends JFrame {
                     JOptionPane.showMessageDialog(this, msg, "Novidades!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+            if (verificarGameOver()) {
+                return;
+            }
             mostrarTransicaoDeDia();
         });
         telaJogo.add(btnIniciarDia);
+
         JButton btnLivro = new JButton();
         btnLivro.setBounds(680, 240, 120, 120);
         btnLivro.setOpaque(false); btnLivro.setContentAreaFilled(false); btnLivro.setBorderPainted(false);
