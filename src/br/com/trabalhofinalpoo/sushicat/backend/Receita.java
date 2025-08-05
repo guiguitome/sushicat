@@ -18,15 +18,6 @@ public class Receita {
     public static final double FATOR_DIFICULDADE = 0.5;
     public static final double CHANCE_MINIMA = 0.0;
 
-    public Receita() {
-        this.nome = "";
-        this.ingredientes = new ArrayList<>();
-        this.precoVenda = 0.0;
-        this.chanceVenda = 0.0;
-        this.desbloqueada = false;
-        this.icone = "";
-    }
-
     public Receita(String nome, List<Item> ingredientes, double precoVenda, double chanceVenda, boolean desbloqueadaInicialmente, String icone) {
         this.nome = nome;
         this.ingredientes = ingredientes;

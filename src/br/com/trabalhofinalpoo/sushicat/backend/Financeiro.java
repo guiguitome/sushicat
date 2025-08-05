@@ -34,7 +34,6 @@ public class Financeiro {
     public double getReceitasDia() { return receitasDia; }
     public double getDespesasDia() { return despesasDia; }
 
-    // Método para que a classe Jogo saiba qual o valor do aluguel a ser pago.
     public double getValorAluguel() {
         return this.valorAluguel;
     }

@@ -11,10 +11,6 @@ public class Inventario {
         this.itens = new ArrayList<>();
     }
 
-    public Inventario(java.util.List<Item> itensIniciais) {
-        this.itens = itensIniciais;
-    }
-
     public void adicionarItem(Item itemComprado) {
         for (Item itemNoInventario : itens) {
             if (itemNoInventario.getId() == itemComprado.getId()) {
@@ -23,28 +19,6 @@ public class Inventario {
             }
         }
         this.itens.add(itemComprado);
-    }
-
-    public boolean temIngredientes(Receita receita) {
-        for (Item ingredienteNecessario : receita.getIngredientes()) {
-            boolean encontrado = false;
-            for (Item itemNoInventario : this.itens) {
-                if (itemNoInventario.getId() == ingredienteNecessario.getId()) {
-                    if (itemNoInventario.getQuantidade() >= ingredienteNecessario.getQuantidade()) {
-                        encontrado = true;
-                        break;
-                    }
-                }
-            }
-            if (!encontrado) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void consumirIngredientes(Receita receita) {
-        consumirIngredientes(receita, 1);
     }
 
     public void consumirIngredientes(Receita receita, int quantidade) {
@@ -104,25 +78,4 @@ public class Inventario {
         return (maxPossivel == Integer.MAX_VALUE) ? 0 : maxPossivel;
     }
 
-    public void mostrarItens() {
-        System.out.println("\n--- Inventário Atual ---");
-        if (itens.isEmpty()) {
-            System.out.println("O inventário está vazio.");
-        } else {
-            for (Item item : itens) {
-                System.out.println("- Item: " + item.getTipo() + " (ID: " + item.getId() + ") | Qtd: " + item.getQuantidade() + item.getDetalhes());
-            }
-        }
-        System.out.println("------------------------");
-    }
-
-    public int getQuantidadeDeItem(int itemId) {
-        int qtdTotal = 0;
-        for (Item item : this.itens) {
-            if (item.getId() == itemId) {
-                qtdTotal += item.getQuantidade();
-            }
-        }
-        return qtdTotal;
-    }
 }

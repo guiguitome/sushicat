@@ -24,11 +24,6 @@ public class Alga extends Item implements IPerecivel{
     }
 
     @Override
-    public String getDetalhes() {
-        return " | Validade: " + this.validade + " dia(s)";
-    }
-    
-    @Override
     public Item criarCopiaParaCompra(int quantidade) {
         return new Alga(this.getId(), this.getValorCompra(), quantidade, this.getIcone(), this.getValidade(), this.isDesbloqueado());
     }

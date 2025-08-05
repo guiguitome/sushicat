@@ -22,10 +22,6 @@ public abstract class Item {
     public abstract boolean deveSerRemovido();
     public abstract Item criarCopiaParaCompra(int quantidade);
 
-    public String getDetalhes() {
-        return "";
-    }
-
     public void adicionarQuantidade(int q) {
         this.quantidade += q;
     }
